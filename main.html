@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./data/styles.css">
+    <title>Wracked</title>
+  </head>
+  <body class="darkmode">
+    <div id="backgroundAll"></div>
+    <section id="loading">
+      <h1 class="trad" data-trad="main.loading">Loading...</h1>
+    </section>
+
+    <section id="main-menu">
+      <h1 id="titleGame"><img src="data/img/logo.jpg"></h1>
+      <div><span class="trad text" data-trad="mainmenu.profile"></span>:<span id="nameProfile"></span></div>
+      <div class="menu-list">
+        <ul id="menuDisplay"></ul>
+      </div>
+    </section>
+
+    <section id="main-savegame">
+      <h1><span class="trad text" data-trad="mainmenu.savegametitle"></span></h1>
+      <content></content>
+      <div class="centerContent">
+        <span class="trad" data-trad="mainmenu.newsave"></span>:<input type="text" id="nameDoSave" value="">
+        <button id="btnDoSave" class="btn"><span class="trad text" data-option="ucfirst" data-trad="basic.create"></span></button>
+      </div>
+      <div class="centerContent">
+        <hr>
+        <button id="btnExport" class="btn"><span class="trad text" data-trad="basic.saveexport"></span></button>
+        <hr>
+        <span class="trad text" data-trad="basic.saveimport"></span><br>
+        <input type="file" id="btnImport" class="btn">
+      </div>
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="main-profile">
+      <h1><span class="trad text" data-trad="profileManagement.title"></span></h1>
+      <div>
+        <label>
+          <span class="trad text" data-trad="profileManagement.newProfile"></span>
+          <br><input type="text" id="newNameProfile">
+        </label>
+        <button id="createProfile" class="btn btn-success"><span class="trad text" data-trad="main.add"></span></button>
+      </div>
+      <div id="listOfProfile">
+      </div>
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="main-options">
+      <h1 class="trad" data-trad="optionmenu.options"></h1>
+      <div class="menu-list">
+        <div class="subPageTitle">
+          <div class="trad selected" data-trad="optionmenu.optionprimarytitle" data-target="optionPrimary"></div>
+          <div class="trad" data-trad="optionmenu.optiongameplaytitle" data-target="optionGameplay"></div>
+          <div class="trad" data-trad="optionmenu.optioncontenttitle" data-target="optionContent"></div>
+          <div class="trad" data-trad="optionmenu.optioncheatstitle" data-target="optionCheats"></div>
+        </div>
+        <div class="centerContent trad" style="width: 800px;font-size: 0.7em;font-style: italic;margin-top: -15px;" data-trad="optionmenu.optionwarning"></div>
+        <content id="optionPrimary">
+          <fieldset style="width: 85%;">
+            <legend><span class="trad text" data-trad="optionmenu.display"></span></legend>
+            <ul>
+              <li><span class="icon icon-darkmode"></span><span class="trad text" data-trad="optionmenu.darkmode"></span><span id="mainOption-darkmode" class="pointer icon icon-toggleOnR"></span></li>
+              <li><span class="icon icon-ecran"></span><span class="trad text" data-trad="optionmenu.showlogo"></span><span id="mainOption-showlogo" class="pointer icon icon-toggleOnR"></span></li>
+              <li><span class="icon icon-star"></span><span class="trad text" data-trad="optionmenu.showpoints"></span><span id="mainOption-showpoints" class="pointer icon icon-toggleOnR"></span></li>
+              <li>
+                <span class="icon icon-pictureon"></span><span class="trad text" data-trad="optionmenu.activitydisplay"></span>
+                <div class="blockChoice">
+                  <div class="mainOption-activitydisplay selected pointer trad text" data-trad="optionmenu.activitydisplayportrait" data-value="portrait"></div>
+                  <div class="mainOption-activitydisplay pointer trad text" data-trad="optionmenu.activitydisplayaction" data-value="action"></div>
+                </div>
+                <br><i id="activitydisplayDesc"></i>
+              </li>
+              <li>
+                <span class="icon icon-picture"></span><span class="trad text" data-trad="optionmenu.sizepicture"></span>
+                <div class="blockChoice">
+                  <div class="mainOption-sizepicture selected pointer trad text" data-trad="optionmenu.sizepicturesmall" data-value="small"></div>
+                  <div class="mainOption-sizepicture pointer trad text" data-trad="optionmenu.sizepicturemedium" data-value="medium"></div>
+                  <!-- <div class="mainOption-sizepicture pointer trad text" data-trad="optionmenu.sizepicturefull" data-value="full"></div> -->
+                </div>
+                <br><i id="sizepictureDesc"></i>
+              </li>
+              <li>
+                <span class="icon icon-movie"></span><span class="trad text" data-trad="optionmenu.speedvideo"></span>
+                <div class="blockChoice">
+                  <div class="mainOption-speedvideo selected pointer trad text" data-trad="optionmenu.speedvideo100" data-value="1.00"></div>
+                  <div class="mainOption-speedvideo pointer trad text" data-trad="optionmenu.speedvideo075" data-value="0.75"></div>
+                  <div class="mainOption-speedvideo pointer trad text" data-trad="optionmenu.speedvideo050" data-value="0.50"></div>
+                </div>
+                <br><i id="speedvideoDesc"></i>
+              </li>
+              <li>
+                <span class="icon icon-edit"></span><span class="trad text" data-trad="optionmenu.highlightchange"></span><span id="mainOption-highlightchange" class="pointer icon icon-toggleOffR"></span>
+                <br><i><span class="trad text" data-trad="optionmenu.highlightchangedesc"></span></i>
+              </li>
+            </ul>
+          </fieldset>
+          <ul>
+            <!-- <li><span class="icon icon-show"></span><span class="trad text" data-trad="optionmenu.currentinfluence"></span><span id="mainOption-currentinfluence" class="pointer icon icon-toggleOffR"></span></li> -->
+            <!-- <li id="mainOption-language"><span class="icon icon-language"></span><span class="trad text" data-trad="optionmenu.language"></span></li>
+            <select id="language-choose"></select> -->
+            <li>
+              <div class="blockChoice">
+                <div id="mainOption-resetGame" class="btn"><span class="icon icon-reset"></span><span class="trad text" data-trad="optionmenu.resetgame"></span></div>
+                <div id="mainOption-resetAll" class="btn"><span class="icon icon-clockwise"></span><span class="trad text" data-trad="optionmenu.resetall"></span></div>
+              </div>
+            </li>
+          </ul>
+        </content>
+        <content id="optionGameplay" class="hide">
+          <fieldset>
+            <legend><span class="trad text" data-trad="optionmenu.contentsevents"></span></legend>
+            <p><span class="trad text" data-trad="optionmenu.contentsdescevents"></span></p>
+            <ul id="listEvents" class="listControl"></ul>
+          </fieldset>
+          <fieldset>
+            <legend><span class="trad text" data-trad="optionmenu.contentsparticipants"></span></legend>
+            <p><span class="trad text" data-trad="optionmenu.contentsdescparticipants"></span></p>
+            <ul id="listParticipants" class="listControl"></ul>
+          </fieldset>
+          <fieldset style="width: 85%;">
+            <legend><span class="trad text" data-trad="optionmenu.adjustments"></span></legend>
+            <ul>
+              <li>
+                <span class="icon icon-finance"></span><span class="trad text" data-trad="optionmenu.corruptpoint"></span><span id="mainOption-corruptpoint" class="pointer icon icon-toggleOffR"></span>
+                <br><i><span class="trad text" data-trad="optionmenu.corruptpointdesc"></span></i>
+              </li>
+              <li>
+                <span class="icon icon-poweron"></span><span class="trad text" data-trad="optionmenu.defeatedhousemate"></span>
+                <div class="blockChoice">
+                  <div class="mainOption-defeatedhousemate selected pointer trad text" data-trad="optionmenu.defeatedhousemateactive" data-value="active"></div>
+                  <div class="mainOption-defeatedhousemate pointer trad text" data-trad="optionmenu.defeatedhousematepassive" data-value="passive"></div>
+                  <div class="mainOption-defeatedhousemate pointer trad text" data-trad="optionmenu.defeatedhousemateout" data-value="out"></div>
+                </div>
+                <br><i id="defeatedhousemateDesc"></i>
+              </li>
+              <li>
+                <span class="icon icon-label"></span><span class="trad text" data-trad="optionmenu.progressnumber"></span><span id="mainOption-progressnumber" class="pointer icon icon-toggleOffR"></span>
+                <br><i><span class="trad text" data-trad="optionmenu.progressnumberdesc"></span></i>
+              </li>
+              <li>
+                <span class="icon icon-file"></span><span class="trad text" data-trad="optionmenu.perksinfluence"></span><span id="mainOption-perksinfluence" class="pointer icon icon-toggleOffR"></span>
+                <br><i><span class="trad text" data-trad="optionmenu.perksinfluencedesc"></span></i>
+              </li>
+              <li>
+                <span class="icon icon-squaredialog"></span><span class="trad text" data-trad="optionmenu.clueaction"></span><span id="mainOption-clueaction" class="pointer icon icon-toggleOffR"></span>
+                <br><i><span class="trad text" data-trad="optionmenu.clueactiondesc"></span></i>
+              </li>
+            </ul>
+          </fieldset>
+        </content>
+        <content id="optionContent" class="hide">
+          <fieldset>
+            <legend><span class="trad text" data-trad="optionmenu.contentclothtop"></span></legend>
+            <p><span class="trad text" data-trad="optionmenu.contentsdescclothtop"></span></p>
+            <div id="infoClothtop"></div>
+            <ul id="listClothtop" class="listControl" data-path="cloth.topCloth" data-isSet="1" data-feature="Choose"></ul>
+          </fieldset>
+          <fieldset>
+            <legend><span class="trad text" data-trad="optionmenu.contentclothbottom"></span></legend>
+            <p><span class="trad text" data-trad="optionmenu.contentsdescclothbottom"></span></p>
+            <div id="infoClothbottom"></div>
+            <ul id="listClothbottom" class="listControl" data-path="cloth.bottomCloth" data-isSet="1" data-feature="Choose"></ul>
+          </fieldset>
+          <fieldset style="width: 85%;">
+            <legend><span class="trad text" data-trad="optionmenu.contentdream"></span></legend>
+            <div class="barContainer">
+              <span class="trad text" data-trad="optionmenu.contentsdreamproba"></span>
+              <div class="lineBar" data-path="morning.dreamProbaBase">
+                <span class="icon icon-back bar-control" data-value="0"></span>
+                <div id="dreamsProba" class="bar-border bar-color">
+                  <div class="bar-content unselectable">100%</div>
+                </div>
+                <span class="icon icon-forward bar-control" data-value="100"></span>
+                <span class="icon icon-reset bar-control" data-value="reset"></span>
+              </div>
+            </div>
+            <div class="barContainer">
+              <span class="trad text" data-trad="optionmenu.contentsdreamprobaincrease"></span>
+              <div class="lineBar" data-path="morning.dreamProbaIncrease">
+                <span class="icon icon-back bar-control" data-value="0"></span>
+                <div id="dreamsProbaIncrease" class="bar-border bar-color">
+                  <div class="bar-content unselectable">100%</div>
+                </div>
+                <span class="icon icon-forward bar-control" data-value="100"></span>
+                <span class="icon icon-reset bar-control" data-value="reset"></span>
+              </div>
+            </div>
+            <p><span class="trad text" data-trad="optionmenu.contentsdescdream"></span></p>
+            <ul id="listDreams" class="listControl" data-path="morning.dreams"></ul>
+          </fieldset>
+        </content>
+        <content id="optionCheats" class="hide">
+          <fieldset style="width: 85%;">
+            <legend><span class="trad text" data-trad="optionmenu.optioncheatstitle"></span></legend>
+            <div class="centerContent trad" style="width: 500px;font-size: 0.8em;font-style: italic;margin: auto;" data-trad="optionmenu.optioncheatswarning"></div>
+            <ul id="cheats">
+                <li data-id="votes">
+                  <div class="smallDescPict"><img src="data/img/other/cheats/cheats-votes.jpg"></div>
+                  <div class="smallDescName"><span class="trad text" data-trad="optionmenu.optioncheatsvotes"></span></div>
+                  <!-- <div class="smallDescOther"></div> -->
+                </li>
+                <li data-id="traps">
+                  <div class="smallDescPict"><img src="data/img/other/cheats/cheats-traps.jpg"></div>
+                  <div class="smallDescName"><span class="trad text" data-trad="optionmenu.optioncheatstraps"></span></div>
+                </li>
+                <li data-id="transform">
+                  <div class="smallDescPict"><img src="data/img/other/cheats/cheats-transform.jpg"></div>
+                  <div class="smallDescName"><span class="trad text" data-trad="optionmenu.optioncheatstransform"></span></div>
+                </li>
+                <li data-id="events">
+                  <div class="smallDescPict"><img src="data/img/other/cheats/cheats-events.jpg"></div>
+                  <div class="smallDescName"><span class="trad text" data-trad="optionmenu.optioncheatsevents"></span></div>
+                </li>
+                <li data-id="dreams">
+                  <div class="smallDescPict"><img src="data/img/other/cheats/cheats-dreams.jpg"></div>
+                  <div class="smallDescName"><span class="trad text" data-trad="optionmenu.optioncheatsdreams"></span></div>
+                </li>
+            </ul>
+          </fieldset>
+        </content>
+        <div class="btn backBtn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div>
+      </div>
+    </section>
+
+    <section id="main-newGame">
+      <h1><span class="trad text" data-trad="mainmenu.newgame"></span></h1>
+      <div id="startNewGame" class="pageContent">
+        <div class="form"><label><div class="title"><span class="trad text" data-trad="newgame.difficulty.title"></span></div><div class="field"><div id="difficultyField"></div></div></label></div>
+        <div class="form"><label><div class="title"><span class="trad text" data-trad="newgame.gender"></span></div><div class="field"><div id="genderField"></div></div></label></div>
+        <div class="divName">
+          <div class="form formPart">
+            <label><div class="title"><span class="trad text" data-trad="newgame.firstname"></span></div><div class="field"><input type="text" id="firstnameField" value=""></div></label>
+          </div>
+          <div class="form formPart">
+            <label><div class="title"><span class="trad text" data-trad="newgame.lastname"></span></div><div class="field"><input type="text" id="lastnameField" value=""></div></label>
+          </div>
+          <button class="btn" id="refreshName" style="float: right;"><span class="icon icon-reset"></span><span class="trad text" data-trad="basic.random" data-option="ucfirst"></span></button>
+        </div>
+        <div class="form"><label><div class="title"><span class="trad text" data-trad="newgame.haircolor"></span></div><div class="field"><div id="haircolorField"></div></div></label></div>
+        <div id="slidersFaceContainer">
+          <span class="icon icon-goback"></span>
+          <div id="slidersFace"></div>
+          <span class="icon icon-goon"></span>
+        </div>
+        <div class="form">
+          <div class="title titlePlus"><span id="perksFieldName"></span>:</div>
+          <div id="perksField" class="field"></div>
+        </div>
+
+        <div class="newgameError badThing"></div>
+
+        <div class="backBtn left"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+        <button id="skipPrologue" class="btn btn-info" disabled="disabled"><span class="trad text" data-trad="newgame.skiprologue"></span><span class="icon icon-in"></span></button>
+        <button class="btn changeStep" disabled="disabled" data-current="startNewGame" data-other="storyPage1"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+      </div>
+
+      <div id="storyPage1" class="pageContent hide">
+        <div class="justifyContent">
+          <img id="facePlayer"><span class="trad" data-trad="newgame.page1.line1"></span>
+        </div>
+        <div class="emailContent">
+          <div class="emailTitle"><span class="trad" data-trad="newgame.page1.subject"></span></div>
+          <div class="emailTitle"><span class="trad" data-trad="newgame.page1.from"></span></div>
+          <div class="emailText">
+            <p><span class="trad" data-trad="newgame.page1.line2"></span></p>
+            <br>
+            <hr>
+            <p>
+              <img id="villaPict1" class="villaPicture">
+              <span class="trad" data-trad="newgame.page1.line3"></span>
+            </p>
+            <p>
+              <img id="villaPict2" class="villaPicture">
+              <span class="trad" data-trad="newgame.page1.line4"></span>
+            </p>
+            <p>
+              <img id="villaPict3" class="villaPicture">
+              <span class="trad" data-trad="newgame.page1.line5"></span>
+            </p>
+            <p>
+              <span class="trad" data-trad="newgame.page1.line6"></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page1.line7"></span>
+        </div>
+
+        <div class="centerContent">
+          <button class="btn changeStep" data-current="storyPage1" data-other="startNewGame"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage1" data-other="storyPage2"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+      </div>
+
+      <div id="storyPage2" class="pageContent hide">
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page2.line1"></span>
+        </div>
+        <div class="emailContent">
+          <div class="emailTitle"><span class="trad" data-trad="newgame.page2.subject"></span></div>
+          <div class="emailTitle"><span class="trad" data-trad="newgame.page1.from"></span></div>
+          <div class="emailText">
+            <p><span class="trad" data-trad="newgame.page2.line2"></span></p>
+            <p style="text-align:center;width: 100%;"><img src="data/img/other/congratulation.jpg" style="border-radius: 15px;"></p>
+            <p><span class="trad" data-trad="newgame.page2.line3"></span></p>
+          </div>
+        </div>
+        <br>
+        <div class="justifyContent">
+          <img src="data/img/other/contract.jpg" style="float: right;padding: 0px 10px;border-radius: 25px;">
+          <span class="trad" data-trad="newgame.page2.line4"></span>
+        </div>
+
+        <div class="justifyContent">
+          <img src="data/img/other/calendar.jpg" style="float: left;padding: 0px 10px;border-radius: 25px;width: 150px;">
+          <span class="trad" data-trad="newgame.page2.line5"></span>
+        </div>
+
+        <div class="centerContent">
+          <button class="btn changeStep" data-current="storyPage2" data-other="storyPage1"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage2" data-other="storyPage3"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+      </div>
+
+      <div id="storyPage3" class="pageContent hide">
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page3.line1"></span>
+        </div>
+
+        <div class="justifyContent">
+          <img src="data/img/other/car_pickup.jpg" style="float: left;padding: 0px 10px;border-radius: 25px;width: 130px;">
+          <span class="trad" data-trad="newgame.page3.line2"></span>
+        </div>
+
+        <div class="justifyContent">
+          <img id="villaPict4" class="villaPicture">
+          <span class="trad" data-trad="newgame.page3.line3"></span>
+        </div>
+
+        <div class="centerContent">
+          <button class="btn changeStep" data-current="storyPage3" data-other="storyPage2"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage3" data-other="storyPage4"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+      </div>
+
+      <div id="storyPage4" class="pageContent hide">
+        <div class="justifyContent">
+          <img id="villaPictLivingroom" src="" style="float: left;padding: 0px 10px;border-radius: 25px;width: 280px;">
+          <span class="trad" data-trad="newgame.page4.line1"></span>
+        </div>
+
+        <div class="centerContent"><img id="villaPictBedroom" src=""></div>
+
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page4.line2"></span>
+        </div>
+
+        <div id="villaAIPresentation" class="discussLine"></div>
+
+        <div class="justifyContent">
+          <img src="data/img/other/snaks_beer.jpg" style="float: right;padding: 0px 10px;border-radius: 25px;width: 130px;">
+          <span class="trad" data-trad="newgame.page4.line3"></span>
+        </div>
+
+        <div id="villaAIPresentation2" class="discussLine"></div>
+
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page4.line4"></span>
+        </div>
+
+        <div id="villaAIPresentation3" class="discussLine dizzyText"></div>
+
+        <div class="centerContent villaBtnFinalWoman hide">
+          <button class="btn changeStep" data-current="storyPage4" data-other="storyPage3"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage4" data-other="storyPage6"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+        <div class="centerContent villaBtnFinalMan hide">
+          <button class="btn changeStep" data-current="storyPage4" data-other="storyPage3"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage4" data-other="storyPage5"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+      </div>
+
+      <div id="storyPage5" class="pageContent hide">
+        <div class="justifyContent dizzyText">
+          <span class="trad" data-trad="newgame.page5.line1"></span>
+        </div>
+
+        <div id="villaTransformation" class="bodyShow centerContent"></div>
+
+        <div id="villaAIPresentation4" class="discussLine dizzyText"></div>
+
+        <div class="justifyContent dizzyText">
+          <span class="trad" data-trad="newgame.page5.line2"></span>
+        </div>
+
+        <div class="centerContent">...<br>...<br>...</div>
+
+        <div id="villaAIPresentation5" class="discussLine"></div>
+
+        <div class="justifyContent">
+          <img src="data/img/other/strangelooking.jpg" style="float: right;padding: 0px 10px;border-radius: 25px;width: 130px;">
+          <span class="trad" data-trad="newgame.page5.line3"></span>
+        </div>
+
+        <div id="villaRealisation1" class="discussLine"></div>
+
+        <div id="villaAIPresentation6" class="discussLine"></div>
+
+        <div id="villaRealisation2" class="discussLine"></div>
+        <div id="villaAIPresentation7" class="discussLine"></div>
+
+        <div id="villaRealisation3" class="discussLine"></div>
+        <div id="villaAIPresentation8" class="discussLine"></div>
+
+        <div id="villaRealisation4" class="discussLine"></div>
+
+        <div class="centerContent dizzyText">
+          <span class="trad" data-trad="newgame.page5.line4"></span>
+        </div>
+
+        <div class="centerContent">
+          <button class="btn changeStep" data-current="storyPage5" data-other="storyPage4"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn changeStep" data-current="storyPage5" data-other="storyPage6"><span class="trad text" data-trad="basic.continue" data-option="ucfirst"></span><span class="icon icon-goon"></span></button>
+        </div>
+
+      </div>
+
+      <div id="storyPage6" class="pageContent hide">
+        <div class="justifyContent">
+          <span class="trad" data-trad="newgame.page6.line1"></span>
+        </div>
+
+        <div id="villaAIPresentation9w" class="discussLine villaBtnFinalWoman hide"></div>
+        <div id="villaAIPresentation9m" class="discussLine villaBtnFinalMan hide"></div>
+
+        <div class="justifyContent">
+          <img id="villaPict5" class="villaPicture">
+          <span class="trad" data-trad="newgame.page6.line2"></span>
+        </div>
+
+        <div id="villaPresentationAll"></div>
+
+        <div class="justifyContent">
+          <img id="villaPict6" class="villaPicture" style="float: right;">
+          <span class="trad" data-trad="newgame.page6.line4"></span>
+        </div>
+
+        <div class="centerContent villaBtnFinalWoman hide">
+          <button class="btn changeStep" data-current="storyPage6" data-other="storyPage4"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn btn-success finishCreation"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-in"></span></button>
+        </div>
+        <div class="centerContent villaBtnFinalMan hide">
+          <button class="btn changeStep" data-current="storyPage6" data-other="storyPage5"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back" data-option="ucfirst"></span></button>
+          <button class="btn btn-success finishCreation"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-in"></span></button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="main-gamewindow">
+      <div id="gameContent">
+        <aside id="sidebarLeft">
+          <content>
+            <div id="logoGame"><img src="data/img/logo.jpg"></div>
+            <div id="timedivGame">
+              <div id="logoTimeGame"></div>
+              <div id="timedisplayGame">
+                <div id="dateGame"></div>
+              </div>
+            </div>
+            <div id="infoGame">
+              <span class="onblock"><span class="trad text" data-option="ucfirst" data-trad="basic.day"></span>: <span id="dayCountGame"></span></span>
+               | 
+              <span class="onblock"><span class="trad text" data-option="ucfirst" data-trad="basic.votes"></span>: <span id="voteCountGame"></span></span>
+               | 
+               <span id="lockCameraRoom"></span>
+            </div>
+            <hr>
+            <button id="btnRefreshAll" style="display:block;margin:auto;" class="btn btn-danger"><span class="icon icon-danger2"></span> Refresh All</button>
+            <div id="nameChar"></div>
+            <div id="pictsPlayer">
+              <img id="pictFacePlayer" src="">
+              <img id="pictTopPlayer" src="">
+              <img id="pictBottomPlayer" src="">
+            </div>
+            <div id="infoChar">
+              <div id="slutBar" class="barSlut barMeter">
+                <div class="barText"><span class="barTextSpan"></span></div>
+                <span class="barBar" style="width:100%"></span>
+              </div>
+              <div id="bimboBar" class="barBimbo barMeter">
+                <div class="barText"><span class="barTextSpan"></span></div>
+                <span class="barBar" style="width:100%"></span>
+              </div>
+            </div>
+          </content>
+          <menu>
+            <ul>
+              <li id="menu-profile" title="" class="trad" data-trad="mainmenu.profile" data-location="title"><div class="btn"><span class="icon icon-user"></span></div></li>
+              <li id="menu-characters" title="" class="trad" data-trad="mainmenu.housemates" data-location="title"><div class="btn"><span class="icon icon-users"></span></div></li>
+              <li id="menu-inventory" title="" class="trad" data-trad="mainmenu.inventory" data-location="title"><div class="btn"><span class="icon icon-case"></span></div></li>
+              <li id="menu-computer" title="" class="trad" data-trad="mainmenu.computer" data-location="title"><div class="btn"><span class="icon icon-screen"></span></div></li>
+              <li id="menu-mainmenu" title="" class="trad" data-trad="mainmenu.mainmenu" data-location="title"><div class="btn"><span class="icon icon-list"></span></div></li>
+              <li id="menu-save" title="" class="trad" data-trad="mainmenu.savegame" data-location="title"><div class="btn"><span class="icon icon-savegame"></span></div></li>
+              <li id="menu-options" title="" class="trad" data-trad="mainmenu.options" data-location="title"><div class="btn"><span class="icon icon-setting"></span></div></li>
+              <li id="menu-help" title="" class="trad" data-trad="mainmenu.help" data-location="title"><div class="btn"><span class="icon icon-question"></span></div></li>
+            </ul>
+          </menu>
+        </aside>
+        <article>
+          <main></main>
+          <footer class="hide">Logs Stats...</footer>
+        </article>
+      </div>
+    </section>
+
+    <section id="main-credits">
+      <p>
+        <span class="trad text" data-trad="credits.icons"></span><br><br>
+        <span class="trad text" data-trad="credits.stranded"></span><br><br>
+        <span class="trad text" data-trad="credits.jacques00"></span><br><hr style="width: 100%;">
+        <span class="trad text" data-trad="credits.media"></span>
+      </p>
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="main-help">
+      <h1><span class="trad text" data-trad="mainmenu.help"></span></h1>
+
+      <h2 class="trad text" data-trad="help.goaltitle"></h2>
+      <p class="trad text" data-trad="help.goal"></p>
+
+      <h2 class="trad text" data-trad="help.votetitle"></h2>
+      <p class="trad text" data-trad="help.vote"></p>
+
+      <h2 class="trad text" data-trad="help.shoptitle"></h2>
+      <p class="trad text" data-trad="help.shop"></p>
+
+      <h2 class="trad text" data-trad="help.trapstitle"></h2>
+      <p class="trad text" data-trad="help.traps"></p>
+
+      <h2 class="trad text" data-trad="help.morningtitle"></h2>
+      <p class="trad text" data-trad="help.morning"></p>
+
+      <p class="trad text" data-trad="help.havefun"></p>
+
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="listOfCharacters">
+      <h1><span class="trad text" data-trad="mainmenu.housemates"></span></h1>
+      <content>
+        <ul id="housemateList">
+        </ul>
+        <div id="charListIA"></div>
+      </content>
+      <div class="backBtn" data-target="main-gamewindow"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="profileChar">
+        <div class="subPageTitle">
+          <div class="trad selected" data-trad="profile.title.main" data-target="profileMain"></div>
+          <div class="trad" data-trad="profile.title.album" data-target="profileAlbum"></div>
+        </div>
+        <div id="profileHisto" class="hide">
+          <button class="btn" id="profileHistoPrev" data-index=""><span class="icon icon-back"></span></button>
+          <button class="btn" id="profileHistoNext" data-index=""><span class="icon icon-forward"></span></button>
+        </div>
+        <content id="profileMain">
+          <div class="profilePicture">
+            <img id="profilePictureImg" src="">
+          </div>
+          <div class="profileNameSection">
+            <div id="profileName">Name of Profile</div>
+            <div id="profileNameOther">Age + Jobs</div>
+          </div>
+          <hr>
+          <ul id="profileInfo"></ul>
+          <hr>
+          <div class="centerContent">
+            <fieldset>
+              <legend class="trad" data-trad="profile.title.testimonial"></legend>
+              <div id="profileTestimonial"></div>
+            </fieldset>
+          </div>
+        </content>
+
+        <content id="profileAlbum" class="hide">
+          <h3 id="titleAlbum">Album</h3>
+          <div id="profileAlbumSection"></div>
+        </content>
+        <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="inventoryPage">
+      <h1><span class="trad text" data-trad="mainmenu.inventory"></span></h1>
+      <div id="inventoryMain">
+        <content></content>
+        <div class="backBtn" data-target="main-gamewindow"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+      </div>
+      <div id="inventoryDetail" class="hide">
+        <content></content>
+        <div id="btnInventoryBack"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+      </div>
+    </section>
+
+    <section id="storePage">
+      <h1><span class="trad text" data-trad="mainmenu.store"></span></h1>
+      <div id="storeMain">
+        <content></content>
+        <div class="backBtn" data-target="main-gamewindow"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+      </div>
+      <div id="storeDetail" class="hide">
+        <content></content>
+        <div id="btnStoreBack"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+      </div>
+    </section>
+
+    <section id="dailyPage">
+      <div id="dailyDream" class="dailyPagePage hide">
+        <h1><span class="trad text" data-trad="morning.dreaming"></span></h1>
+        <content></content>
+        <svg>
+          <filter id="dreamAnim">
+            <feTurbulence x="0" y="0" baseFrequency="0.02" numOctaves="5" seed="2">
+              <animate attributeName="baseFrequency" dur="60s" values="0.02;0.05;0.02" repeatCount="indefinite">
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="30"/>
+          </filter>
+        </svg>
+        <div id="dailyDreamBtn" class="btnChange" data-origin="dailyDream" data-target="dailyRecap"><div class="btn"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div></div>
+      </div>
+      <div id="dailyFun" class="dailyPagePage hide">
+        <h1><span class="trad text" data-trad="morning.funtime"></span></h1>
+        <content></content>
+        <div class="btnChange" data-origin="dailyFun" data-target="dailyRecap"><div class="btn"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div></div>
+      </div>
+      <div id="dailyRecap" class="dailyPagePage hide">
+        <h1><span class="trad text" data-trad="morning.newday"></span></h1>
+        <content></content>
+        <div id="btnChangeFolio" class="btnChange hide" data-origin="dailyRecap" data-target="dailyFolio"><div class="btn"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div></div>
+        <div id="btnChangeHypno" class="btnChange hide" data-origin="dailyRecap" data-target="dailyHypno"><div class="btn"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div></div>
+        <div class="btn locationBtn hide" data-location="hallway"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div>
+      </div>
+      <div id="dailyFolio" class="dailyPagePage hide">
+        <h1><span class="trad text" data-trad="morning.bytheway"></span></h1>
+        <content></content>
+        <div class="btnChange hide" data-origin="dailyFolio" data-target="dailyHypno"><div class="btn"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div></div>
+        <div class="btn locationBtn" data-location="hallway"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div>
+      </div>
+      <div id="dailyHypno" class="dailyPagePage hide">
+        <h1><span class="trad text" data-trad="morning.adjustmentstitle"></span></h1>
+        <content></content>
+        <div class="btn locationBtn" data-location="hallway"><span class="trad text" data-trad="main.continue"></span><span class="icon icon-goon"></span></div>
+      </div>
+    </section>
+
+    <section id="storyPage"></section>
+
+    <section id="main-achievement">
+      <h1><span class="trad text" data-trad="mainmenu.achievement"></span></h1>
+      TODO...
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="main-patchNotes">
+      <h1><span class="trad text" data-trad="mainmenu.patchnotes"></span></h1>
+      <ul>
+        <li>
+          <u>2023-09-14 : Release V1.0.14</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-14"></span>
+        </li>
+        <li>
+          <u>2023-09-13 : Release V1.0.13</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-13"></span>
+        </li>
+        <li>
+          <u>2023-09-12 : Release V1.0.12</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-12"></span>
+        </li>
+        <li>
+          <u>2023-09-11 : Release V1.0.11</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-11"></span>
+        </li>
+        <li>
+          <u>2023-09-10 : Release V1.0.10</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-10"></span>
+        </li>
+        <li>
+          <u>2023-09-09 : Release V1.0.9</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-9"></span>
+        </li>
+        <li>
+          <u>2023-09-08 : Release V1.0.8</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-8"></span>
+        </li>
+        <li>
+          <u>2023-09-08 : Release V1.0.7</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-7"></span>
+        </li>
+        <li>
+          <u>2023-09-06 : Release V1.0.6</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-6"></span>
+        </li>
+        <li>
+          <u>2023-09-05 : Release V1.0.5</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-5"></span>
+        </li>
+        <li>
+          <u>2023-09-04 : Release V1.0.4</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-4"></span>
+        </li>
+        <li>
+          <u>2023-09-04 : Release V1.0.3</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-3"></span>
+        </li>
+        <li>
+          <u>2023-09-03 : Release V1.0.2</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-2"></span>
+        </li>
+        <li>
+          <u>2023-09-03 : Release V1.0.1</u><br>
+          <span class="trad text" data-trad="patchnote.v1-0-1"></span>
+        </li>
+        <li>
+          <u>2023-09-02 : Release V1.0.0</u><br>
+          <span class="trad text" data-trad="patchnote.v1"></span>
+        </li>
+      </ul>
+      <div class="backBtn"><div class="btn"><span class="icon icon-goback"></span><span class="trad text" data-trad="main.back"></span></div></div>
+    </section>
+
+    <section id="nothingToDisplay" class="hide"></section>
+    <section id="popup" class="hide"></section>
+    <section id="popupVotes" class=""></section>
+    <section id="popupStart" class="hide">
+      <span id="closePopupStart">X</span>
+      <h1><img src="data/img/logo.jpg"></h1>
+      <p class="smallP trad text" data-trad="popupstart.made"></p>
+      <p class="trad text" data-trad="popupstart.line1"></p>
+      <p class="trad text" data-trad="popupstart.line2"></p>
+      <p class="trad text" data-trad="popupstart.line3"></p>
+      <p class="trad text" data-trad="popupstart.line4"></p>
+      <p class="trad text" data-trad="popupstart.line5"></p>
+    </section>
+    <section id="popupError" class="hide">
+      <p>Hello, Sorry for that problem, can you copy paste this message in <a href="https://www.tfgames.site/phpbb3/viewtopic.php?p=736201" target="_BLANK">the Forum</a> or by Personal Message in the forum, I will try to fix it, Thanks!</p>
+      <div id="errorContent"></div>
+      <button id="closeError">Close</button>
+    </section>
+
+    <script src="./data/database.js"></script>
+    <script src="./data/translation.js"></script>
+
+    <!-- ADD BETWEEN HERE all the script you want to add, BE CAREFULL what you are using -->
+
+    <!-- <script src="./data/addon/unfinished-model.js"></script> -->
+
+    <!-- ADD NOTHING AFTER HERE -->
+
+    <script src="./data/main.js"></script>
+  </body>
+</html>
